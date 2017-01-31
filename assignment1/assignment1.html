@@ -1,0 +1,125 @@
+<!-- this is an AngularJS View Template -->
+<!-- it is necessary to create a module into which we place our ng-app -->
+<html ng-app="AngularJSExample">
+    <head>
+        <!-- from Google Hosted Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular.min.js"></script>
+        <script lang="javascript">
+        
+            var myModule = angular.module('AngularJSExample', []);
+            
+            //first register the controller - https://docs.angularjs.org/guide/migration
+            myModule.controller('CostController', 
+                //we make an AngularJS controller right here in the template (we won't normally do this though)
+                function ($scope) {
+                    
+                    var cc = this;
+                    
+                    cc.cost = 0;
+                    cc.add_tax = true;
+                    cc.total_bill = true;
+                    
+                    function update(){
+                        cc.tax = cc.add_tax ? cc.cost * 0.15 : 0.0;    
+                        cc.total = parseFloat(cc.cost) + cc.tax * cc.shipping.amount; 
+                    }
+                    
+                    //used to detect when cost changes
+                    $scope.$watch('cc.cost', update);
+                    $scope.$watch('cc.add_tax', update);
+                    $scope.$watch('cc.shipping', update);
+                    $scope.$watch('cc.cost + cc.tax', update);
+                    
+                    //final bill
+                    cc.final_bill = 0.0;
+                    cc.add = function add(){
+                        cc.final_bill += cc.total;   
+                    }
+                    
+                    //shipping options
+                    cc.shipping_options = [
+                        {amount:1.0169,name:"AK"},
+                        {amount:1.0851,name:"AL"},
+                        {amount:1.0919,name:"AR"},
+                        {amount:1.0817,name:"AZ"},
+                        {amount:1.0841,name:"CA"},
+                        {amount:1.0739,name:"CO"},
+                        {amount:1.0635,name:"CT"},
+                        {amount:0,name:"DE"},
+                        {amount:1.0662,name:"FL"},
+                        {amount:1.0697,name:"GA"},
+                        {amount:1.0435,name:"HI"},
+                        {amount:1.0678,name:"IA"},
+                        {amount:1.0603,name:"ID"},
+                        {amount:1.0816,name:"IL"},
+                        {amount:1.0700,name:"IN"},
+                        {amount:1.0815,name:"KS"},
+                        {amount:1.0600,name:"KY"},
+                        {amount:1.0889,name:"LA"},
+                        {amount:1.0625,name:"MA"},
+                        {amount:1.0600,name:"MD"},
+                        {amount:1.0550,name:"ME"},
+                        {amount:1.0600,name:"MI"},
+                        {amount:1.0719,name:"MN"},
+                        {amount:1.0758,name:"MO"},
+                        {amount:1.0700,name:"MS"},
+                        {amount:0,name:"MT"},
+                        {amount:1.0690,name:"NC"},
+                        {amount:1.0655,name:"ND"},
+                        {amount:1.0625,name:"NE"},
+                        {amount:0,name:"NH"},
+                        {amount:1.0697,name:"NJ"},
+                        {amount:1.0726,name:"NM"},
+                        {amount:1.0793,name:"NV"},
+                        {amount:1.0847,name:"NY"},
+                        {amount:1.0711,name:"OH"},
+                        {amount:1.0872,name:"OK"},
+                        {amount:0,name:"OR"},
+                        {amount:1.0634,name:"PA"},
+                        {amount:1.0700,name:"RI"},
+                        {amount:1.0719,name:"SC"},
+                        {amount:1.0583,name:"SD"},
+                        {amount:1.0945,name:"TN"},
+                        {amount:1.0825,name:"TX"},
+                        {amount:1.0668,name:"UT"},
+                        {amount:1.0563,name:"VA"},
+                        {amount:1.0614,name:"VT"},
+                        {amount:1.0888,name:"WA"},
+                        {amount:1.0543,name:"WI"},
+                        {amount:1.0607,name:"WV"},
+                        {amount:1.0549,name:"WY"},
+                    ];
+                    
+                    cc.shipping = cc.shipping_options[0];
+                    
+                    
+                }
+            );
+        </script>
+    </head>
+    <body>
+        <div ng-controller="CostController as cc">
+            <input type="checkbox" ng-model="cc.add_tax" />Add Tax
+            <input type="checkbox" ng-model="cc.total_bill" />Show Total
+            <p>
+                Cost: <input type="text" ng-model="cc.cost" placeholder="cost" /><br/>
+                State: <select ng-model="cc.shipping" ng-options="s.name for s in cc.shipping_options"></select>
+            </p>
+            <p>
+                <!-- the angular directive both associates with the cost model and
+                uses a built-in formatting capability -->
+                This is your cost: {{cc.cost|currency}}
+            </p>
+            <p>
+                This is your tax: {{cc.tax|currency}}
+            </p>
+            <p ng-show="cc.total_bill">
+                This is your total: {{cc.total|currency}}
+                <button ng-click="cc.add()">Add</button>
+            </p>
+            <p ng-show="cc.total_bill">
+                Your running total is {{cc.final_bill|currency}}
+            </p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<html ng-app="TempConvert">
+    <head>
+        <script src="https://code.angularjs.org/1.6.1/angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-controller="ConverterController as cc">
+            C: <input type="text" ng-model="cc.celcius" >
+            F: <input type="text" ng-model="cc.fahrenheit" >
+        </div>
+        <script>
+            var tempC = angular.module("TempConvert", []);
+            
+            tempC.controller("ConverterController", [
+                "$scope",
+                function($scope) {
+                    //stuff
+                    
+                    //hook up controller to a variable to obtain its scope
+                    var cc = this;
+                    
+                    //C and F
+                    cc.celcius = 0;
+                    cc.fahrenheit = 0;
+                    
+                    cc.CtoF = function(temp){
+                      return (temp * 1.8) + 32;  
+                    };
+                    
+                    cc.FtoC = function(temp){
+                        return (temp - 32) / 1.8;
+                    };
+                    
+                    
+                    $scope.$watch('cc.celcius', update);
+                    $scope.$watch('cc.fahrenheit', update);
+                    
+                    function update(){
+                        cc.fahrenheit = cc.CtoF(cc.celcius);
+                        cc.celcius = cc.FtoC(cc.fahrenheit);
+                    }
+                }
+            ]);
+        </script>
+    </body>
+</html>

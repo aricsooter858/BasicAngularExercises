@@ -1,0 +1,83 @@
+<html ng-app="LoginCheck">
+    <head>
+        <script src = "https://code.angularjs.org/1.6.1/angular.min.js"></script>
+        <script lang="javascript">
+            var myModule = angular.module('LoginCheck', ['ngAnimate']);
+            
+            //first register the controller - https://docs.angularjs.org/guide/migration
+            myModule.controller('MainController', 
+                function ($scope) {
+                    var mc = this;
+                    
+                    mc.user = null;
+                    
+                    $scope.$on('login', function(event, name){
+                        mc.user = name;                  
+                    });
+                    $scope.$on('logout', function(event, name){
+                        mc.user = null;                  
+                    });                    
+                }
+            );
+            
+            myModule.controller('LoginController', 
+                function ($scope) {
+                    var lc = this;
+
+                    lc.name = '';
+                    
+                    lc.logout = function logout(){
+                        $scope.$emit('logout');
+                    }                    
+                    
+                    lc.loginarray = [
+                      {name:"Aric"}  
+                    ];
+                    
+                    lc.check = lc.loginarray[0];
+                    
+                    if(lc.name = lc.check){
+                        lc.login = function login(){
+                            $scope.$emit('login', lc.name);
+                        }  
+                    };
+                }
+            );            
+            
+        </script>
+        <style>
+            .gray { background: #eee; }
+            
+            .person.ng-enter,
+            .person.ng-leave{
+                -webkit-transition:0.5s linear all;
+                -moz-transition:0.5s linear all;
+                transition:0.5s linear all;
+            }
+            
+            .person.ng-enter,
+            .person.ng-leave.ng-leave-active{
+                opacity:0;
+            }
+            
+            .person.ng-leave,
+            .person.ng-enter.ng-enter-active {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body ng-controller="MainController as mc">
+        <div ng-show="mc.user">{{mc.user}} is logged in</div>
+        <div ng-hide="mc.user">No User logged in</div>
+        <div ng-controller="LoginController as lc" 
+             style="float:right; padding:5px;border:1px solid #ccc; background:#eee;">
+            <div ng-hide="mc.user">
+                Login: <input ng-model="lc.name">
+            </div>
+            <div>
+                <button ng-show="mc.user" ng-click="lc.logout()">Logout</button>
+                <button ng-hide="mc.user" ng-click="lc.login()">Login</button>
+            </div>
+        </div>
+    </body>
+</html>
