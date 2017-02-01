@@ -34,63 +34,63 @@
                 }
                 
                 uc.convertlength = function convertlength(){
-                    if (uc.metric_length.name == "Millimeters" && uc.imperial_length.name == "Inches"){
+                    if (uc.metric_length.name == "Millimeter" && uc.imperial_length.name == "Inch"){
                         uc.convertedlength = uc.long * 0.0393701;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Millimeters" && uc.imperial_length.name == "Feet"){
+                    else if(uc.metric_length.name == "Millimeter" && uc.imperial_length.name == "Feet"){
                         uc.convertedlength = uc.long * 0.00328084;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Millimeters" && uc.imperial_length.name == "Yards"){
+                    else if(uc.metric_length.name == "Millimeter" && uc.imperial_length.name == "Yard"){
                         uc.convertedlength = uc.long * 0.00109361;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Millimeters" && uc.imperial_length.name == "Miles"){
+                    else if(uc.metric_length.name == "Millimeter" && uc.imperial_length.name == "Mile"){
                         uc.convertedlength = uc.long * 0.00000062;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Centimeters" && uc.imperial_length.name == "Inches"){
+                    else if(uc.metric_length.name == "Centimeter" && uc.imperial_length.name == "Inch"){
                         uc.convertedlength = uc.long * 0.393701;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Centimeters" && uc.imperial_length.name == "Feet"){
+                    else if(uc.metric_length.name == "Centimeter" && uc.imperial_length.name == "Feet"){
                         uc.convertedlength = uc.long * 0.0328084;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Centimeters" && uc.imperial_length.name == "Yards"){
+                    else if(uc.metric_length.name == "Centimeter" && uc.imperial_length.name == "Yard"){
                         uc.convertedlength = uc.long * 0.0109361;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Centimeters" && uc.imperial_length.name == "Miles"){
+                    else if(uc.metric_length.name == "Centimeter" && uc.imperial_length.name == "Mile"){
                         uc.convertedlength = uc.long * 0.0000062;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Meters" && uc.imperial_length.name == "Inches"){
+                    else if(uc.metric_length.name == "Meter" && uc.imperial_length.name == "Inch"){
                         uc.convertedlength = uc.long * 39.3701;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Meters" && uc.imperial_length.name == "Feet"){
+                    else if(uc.metric_length.name == "Meter" && uc.imperial_length.name == "Feet"){
                         uc.convertedlength = uc.long * 3.28084;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Meters" && uc.imperial_length.name == "Yards"){
+                    else if(uc.metric_length.name == "Meter" && uc.imperial_length.name == "Yard"){
                         uc.convertedlength = uc.long * 1.09361;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Meters" && uc.imperial_length.name == "Miles"){
+                    else if(uc.metric_length.name == "Meter" && uc.imperial_length.name == "Mile"){
                         uc.convertedlength = uc.long * 0.000621371;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Kilometers" && uc.imperial_length.name == "Inches"){
+                    else if(uc.metric_length.name == "Kilometer" && uc.imperial_length.name == "Inch"){
                         uc.convertedlength = uc.long * 39370.1;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Kilometers" && uc.imperial_length.name == "Feet"){
+                    else if(uc.metric_length.name == "Kilometer" && uc.imperial_length.name == "Feet"){
                         uc.convertedlength = uc.long * 3280.84;
                         return uc.convertedlength;
                     }
-                    else if(uc.metric_length.name == "Kilometers" && uc.imperial_length.name == "Yards"){
+                    else if(uc.metric_length.name == "Kilometer" && uc.imperial_length.name == "Yard"){
                         uc.convertedlength = uc.long * 1093.61;
                         return uc.convertedlength;
                     }
@@ -116,19 +116,19 @@
                 uc.imperial_weight = uc.metric_weight_options[0];
                 
                 uc.metric_length_options = [
-                  {name:"Millimeters"},
-                  {name:"Centimeters"},
-                  {name:"Meters"},
-                  {name:"Kilometers"}
+                  {name:"Millimeter"},
+                  {name:"Centimeter"},
+                  {name:"Meter"},
+                  {name:"Kilometer"}
                 ];
                 
                 uc.metric_length = uc.metric_length_options[0];
                 
                 uc.imperial_length_options = [
-                    {name:"Inches"},
+                    {name:"Inch"},
                     {name:"Feet"},
-                    {name:"Yards"},
-                    {name:"Miles"}
+                    {name:"Yard"},
+                    {name:"Mile"}
                 ]
                 
                 uc.imperial_length = uc.imperial_length_options[0];
@@ -151,7 +151,7 @@
                 The selected unit is <span ng-bind="uc.metric_weight.name"></span>
             </p>
             <p>
-             <span ng-bind="uc.weight"></span> <span ng-bind="uc.metric_weight.name"></span> equals {{uc.convertedweight}} <span ng-bind="uc.imperial_weight.name"></span>
+             <span ng-bind="uc.weight"></span><span ng-bind="uc.metric_weight.name"></span> equals {{uc.convertedweight}} <span ng-bind="uc.imperial_weight.name"></span>
             </p>
             <p>
                 <h1>Length Converter</h1>
@@ -162,7 +162,7 @@
                 The selected unit is <span ng-bind="uc.metric_length.name"></span>
             </p>
             <p>
-                <span ng-bind="uc.long"></span> <span ng-bind="uc.metric_length.name"></span> equals {{uc.convertedlength}} <span ng-bind="uc.imperial_length.name"></span>
+                {{uc.convertedlength}}
             </p>
         </div>
         
