@@ -145,8 +145,8 @@
             <p>
                 <h1>Weight Converter</h1>
                 <input type="text" ng-model="uc.weight" placeholder="0" />
-                <span><select ng-model="uc.metric_weight" ng-options="s.name for s in uc.metric_weight_options"></select></span>
-                To <span><select ng-model ="uc.imperial_weight" ng-options="s.name for s in uc.imperial_weight_options"></select>
+                <span><select ng-model="uc.metric_weight" ng-options="s.name for s in uc.metric_weight_options" ng-change="uc.convertweight()"></select></span>
+                To <span><select ng-model ="uc.imperial_weight" ng-options="s.name for s in uc.imperial_weight_options" ng-change="uc.convertweight()"></select>
                 <button ng-click="uc.convertweight()">Convert</button></span><br/>
                 The selected unit is <span ng-bind="uc.metric_weight.name"></span>
             </p>
@@ -156,8 +156,8 @@
             <p>
                 <h1>Length Converter</h1>
                 <input type="text" ng-model="uc.long" placeholder="0" />
-                <span><select ng-model="uc.metric_length" ng-options="s.name for s in uc.metric_length_options"></select></span>
-                To <span><select ng-model ="uc.imperial_length" ng-options="s.name for s in uc.imperial_length_options"></select>
+                <span><select ng-model="uc.metric_length" ng-options="s.name for s in uc.metric_length_options" ng-change="uc.convertlength()"></select></span>
+                To <span><select ng-model ="uc.imperial_length" ng-options="s.name for s in uc.imperial_length_options" ng-change="uc.convertlength()"></select>
                 <button ng-click="uc.convertlength()">Convert</button></span><br/>
                 The selected unit is <span ng-bind="uc.metric_length.name"></span>
             </p>
